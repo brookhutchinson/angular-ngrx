@@ -1,8 +1,10 @@
+// components
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NgForm }            from '@angular/forms';
 
-import { AuthService } from './auth.service';
+// services
+import { AuthService }       from './auth.service';
+import { Router }            from '@angular/router';
 
 @Component({
   templateUrl: './login.component.html',
@@ -10,14 +12,11 @@ import { AuthService } from './auth.service';
 })
 export class LoginComponent implements OnInit {
   pageTitle = 'Log In';
-
   maskUserName: boolean;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   cancel(): void {
     this.router.navigate(['welcome']);

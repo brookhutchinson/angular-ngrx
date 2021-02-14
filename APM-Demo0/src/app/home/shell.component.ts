@@ -1,3 +1,4 @@
+// components
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shell.component.css']
 })
 export class ShellComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

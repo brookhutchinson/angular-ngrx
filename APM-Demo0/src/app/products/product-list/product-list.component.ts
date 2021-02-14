@@ -1,9 +1,15 @@
+// components
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+// services
+import { ProductService }               from './../product.service';
 
-import { Product } from '../product';
-import { ProductService } from '../product.service';
+// interfaces
+import { HttpErrorResponse }            from '@angular/common/http';
+import { Product }                      from './../product';
+
+// rxjs
+import { Subscription }                 from 'rxjs';
 
 @Component({
   selector: 'pm-product-list',
@@ -13,26 +19,24 @@ import { ProductService } from '../product.service';
 export class ProductListComponent implements OnInit, OnDestroy {
   pageTitle = 'Products';
   errorMessage: string;
-
   displayCode: boolean;
-
   products: Product[];
 
-  // Used to highlight the selected product in the list
+  // highlight the selected product in the list
   selectedProduct: Product | null;
   sub: Subscription;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.sub = this.productService.selectedProductChanges$.subscribe(
       currentProduct => this.selectedProduct = currentProduct
     );
 
-    this.productService.getProducts().subscribe({
-      next: (products: Product[]) => this.products = products,
-      error: err => this.errorMessage = err
-    });
+    this.productService.getProducts().subscribe(
+      (products: Product[]) => this.products = products,
+      (errorResponse) => this.errorMessage = errorResponse.message
+    );
   }
 
   ngOnDestroy(): void {
@@ -50,5 +54,4 @@ export class ProductListComponent implements OnInit, OnDestroy {
   productSelected(product: Product): void {
     this.productService.changeSelectedProduct(product);
   }
-
 }
