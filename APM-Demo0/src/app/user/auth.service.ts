@@ -1,4 +1,4 @@
-// services
+// angular
 import { Injectable } from '@angular/core';
 
 // interfaces
@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   login(userName: string, password: string): void {
-    // Code here would log into a back end service and return user information
+    // code here would log into a back end service and return user information
     // this is just hard-coded here
     this.currentUser = {
       id: 2,

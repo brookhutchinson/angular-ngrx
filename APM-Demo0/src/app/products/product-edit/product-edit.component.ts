@@ -3,19 +3,19 @@ import { Component, OnInit, OnDestroy }       from '@angular/core';
 // angular forms
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-// form validators
-import { GenericValidator }                   from './../../shared/generic-validator';
-import { NumberValidators }                   from './../../shared/number.validator';
-
 // services
 import { ProductService }                     from './../product.service';
+
+// rxjs
+import { Subscription }                       from 'rxjs';
 
 // interfaces
 import { HttpErrorResponse }                  from '@angular/common/http';
 import { Product }                            from './../product';
 
-// rxjs
-import { Subscription }                       from 'rxjs';
+// form validators
+import { GenericValidator }                   from './../../shared/generic-validator';
+import { NumberValidators }                   from './../../shared/number.validator';
 
 @Component({
   selector: 'pm-product-edit',

@@ -4,12 +4,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 // services
 import { ProductService }               from './../product.service';
 
+// rxjs
+import { Subscription }                 from 'rxjs';
+
 // interfaces
 import { HttpErrorResponse }            from '@angular/common/http';
 import { Product }                      from './../product';
-
-// rxjs
-import { Subscription }                 from 'rxjs';
 
 @Component({
   selector: 'pm-product-list',

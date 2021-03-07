@@ -1,4 +1,4 @@
-// services
+// angular
 import { Injectable }             from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { RouterStateSnapshot }    from '@angular/router';

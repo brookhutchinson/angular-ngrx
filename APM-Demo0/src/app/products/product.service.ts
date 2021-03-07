@@ -3,9 +3,6 @@ import { Injectable }       from '@angular/core';
 import { HttpClient }       from '@angular/common/http';
 import { HttpHeaders }      from '@angular/common/http';
 
-// interfaces
-import { Product }          from './product';
-
 // rxjs
 import { BehaviorSubject } from 'rxjs';
 import { of }              from 'rxjs';
@@ -14,6 +11,9 @@ import { throwError }      from 'rxjs';
 import { catchError }      from 'rxjs/operators';
 import { map }             from 'rxjs/operators';
 import { tap }             from 'rxjs/operators';
+
+// interfaces
+import { Product }          from './product';
 
 @Injectable({
   providedIn: 'root',
@@ -79,6 +79,7 @@ export class ProductService {
         tap(data => console.log('deleteProduct: ' + id)),
         tap(data => {
           const foundIndex = this.products.findIndex(item => item.id === id);
+
           if (foundIndex > -1) {
             this.products.splice(foundIndex, 1);
           }
@@ -91,6 +92,7 @@ export class ProductService {
   updateProduct(product: Product): Observable<Product> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.productsUrl}/${product.id}`;
+
     return this.http.put<Product>(url, product, { headers })
       .pipe(
         // write to console
@@ -113,6 +115,7 @@ export class ProductService {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
     let errorMessage: string;
+
     if (err.error instanceof ErrorEvent) {
       // client-side
       errorMessage = `An error occurred: ${err.error.message}`;

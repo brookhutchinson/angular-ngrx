@@ -17,7 +17,7 @@ import { PageNotFoundComponent }          from './home/page-not-found.component'
 import { ShellComponent }                 from './home/shell.component';
 import { WelcomeComponent }               from './home/welcome.component';
 
-/* feature modules */
+// feature modules
 import { UserModule }                     from './user/user.module';
 
 @NgModule({
