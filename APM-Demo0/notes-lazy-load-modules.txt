@@ -1,0 +1,79 @@
+Lazy Load Modules
+
+Minimize the time that it takes to render application inside browser
+Minimize the time that it takes to render application after a user makes a request
+
+Lazy Loading Modules = Async Routing = Load feature modules on demand
+
+___________________________________________________________________________________________
+Lazy Loading
+Goal: Improve statup time of application
+Goal: Fewer files are downloaded to startup application
+Goal: Fewer files for Angular to have to compile in order to display application
+Goal: Fewer files transfered over the network from server to browser
+
+
+___________________________________________________________________________________________
+Preload Lazy-Loaded Routes
+Goal: Preload our Lazy-Loaded routes before they are navigated to
+Download and compile feature modules in the background
+
+___________________________________________________________________________________________
+Browser makes request to server using URL
+Server responds with response (index.html)
+
+index.html provides details on what else needs to be requested for application
+
+browser makes request for css files
+browser makes request for javascript files
+
+Angular compiles the downloaded javascript bundles inside the browser
+Angular loads the AppComponent in the browser
+Angular renders AppComponent HTML Template
+
+
+___________________________________________________________________________________________
+Depending on the size of the application the time that it takes to load and startup the application in a browser could take a significant
+amount of time
+
+
+Lazy Loading modules speeds up the startup time of the application
+By splitting the application into multiple javascript bundles
+And then only loading some modules eagerly
+And then only loading some modules lazy (on demand)
+
+
+___________________________________________________________________________________________
+When a user navigates to a route inside a lazy-loaded module
+at that point in time the lazy-loaded module is downloaded to the browser and then compiled
+
+The application is not weighed down with unused features until those features are actually needed
+When a user needs to use specific functionality of a module, then that module is lazy-loaded (downloaded on demand)
+
+
+There is no need to have the browser download and compile all modules for your entire application if a user may not even
+use any features from a module.  Example AdminModule
+
+
+___________________________________________________________________________________________
+Prepare for Lazy Loading a Feature Module
+
+Define which modules should be Eagerly-Loaded
+HomeModule
+
+Define which modules should be Lazy-Loaded
+ContractsModule
+FacilitiesModule
+MarketersModule
+SupplyForecastingModule
+SystemControlsModule
+
+CoreModule
+EgmsCommonModule
+SharedModule
+
+
+___________________________________________________________________________________________
+Define a custom "preloading" feature modules strategy
+This means when and how will we have the application download and compile each of the lazy-loaded modules
+
