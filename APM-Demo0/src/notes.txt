@@ -1,0 +1,90 @@
+NgRX is a framework for building reactive applications using Angular
+NgRx provides state management
+NgRx isolates side effects
+
+_______________________________________________________________________________________________________________
+NgRx = Angular + Redux pattern
+
+_______________________________________________________________________________________________________________
+What is the Redux pattern
+
+Helps an application manage its application state
+The Redux pattern provides a one-way data flow throughout our application
+
+A component view contains a checkbox
+When a user checks the checkbox then the Product Code displays inside the view for each product
+When a user unchecks the checkbox then the Product Code does not display inside the view for each product
+
+Think of state a data at any point in time
+
+User checks checkbox
+Component View raises event to notify component
+Component dispatches an action to a reducer
+Think of a reducer as a dispatcher function
+The reducer uses the action and the current state from the store to define new state
+The reducer updates the store with the new state
+The reducer never truly modifies state, instead the reducer only creates "new" state
+
+The store is a client-side (in memory) state container
+The store only stores application state during the execution of the application
+
+A component can subscribe to the store using a selector
+A component is notified by the store of any state changes
+Think of a selector like a stored procedure that is used to query our store
+A selector knows how to locate data inside the store
+A selector knows how to return data from a store to a component
+
+When new state is replaced inside the store
+A component is notified of the new state
+A component then updates new state values to bound controls inside the Component View
+
+
+
+
+_______________________________________________________________________________________________________________
+npm packages
+@ngrx/store
+@ngrx/store-devtools
+@ngrx/effects
+
+_______________________________________________________________________________________________________________
+
+Goal of NgRX
+
+1) Structure our applications
+2) Manage state inside our applications
+3) Organize state
+4) Manage interactions with state
+
+_______________________________________________________________________________________________________________
+As applications get larger and larger an application needs to keep track of more and more state
+As we add more features to our application it can become difficult to manage more and more interactions
+Managing state can become challenging
+
+_______________________________________________________________________________________________________________
+By using a consistent pattern we give our applications a firm foundation and help stabalize our complex state management
+
+_______________________________________________________________________________________________________________
+What is state?
+
+Information about the view
+Whether to display specific ui elements inside our view
+Whether to display specific fields inside our view
+State can be user information
+State can be a user's name
+State can be a user's security role that is used to customize the application for that user
+State can be product information
+Product information may be originally retrieved from an application
+Product information may be then later stored inside a product store
+An application may dispatch actions to interact with the product store
+State can be the currently selected product
+
+_______________________________________________________________________________________________________________
+The purpose of NgRX is to provide a formal pattern for organizing our application's state into a state container
+
+A state store is the container that lives inside the browser
+A state store stores state
+One way data flow from application to state store
+Anytime that a store is updated with new state then the state store notifies any components that need to know about state changes
+
+
