@@ -1,15 +1,15 @@
 // angular modules
-import { NgModule }              from '@angular/core';
-import { RouterModule }          from '@angular/router';
-import { Routes }                from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 
 // components
 import { PageNotFoundComponent } from './home/page-not-found.component';
-import { ShellComponent }        from './home/shell.component';
-import { WelcomeComponent }      from './home/welcome.component';
+import { ShellComponent } from './home/shell.component';
+import { WelcomeComponent } from './home/welcome.component';
 
 // guards
-import { AuthGuard }             from './user/auth-guard.service';
+import { AuthGuard } from './user/auth-guard.service';
 
 const appRoutes: Routes = [
   {

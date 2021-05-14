@@ -1,22 +1,22 @@
 // services
-import { Injectable }       from '@angular/core';
-import { HttpClient }       from '@angular/common/http';
-import { HttpHeaders }      from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 // rxjs
 import { BehaviorSubject } from 'rxjs';
-import { of }              from 'rxjs';
-import { Observable }      from 'rxjs';
-import { throwError }      from 'rxjs';
-import { catchError }      from 'rxjs/operators';
-import { map }             from 'rxjs/operators';
-import { tap }             from 'rxjs/operators';
+import { of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 // interfaces
-import { Product }          from './product';
+import { Product } from './product';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProductService {
   private productsUrl = 'api/products';

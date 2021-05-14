@@ -1,21 +1,21 @@
-import { Component, OnInit, OnDestroy }       from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // angular forms
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 // services
-import { ProductService }                     from './../product.service';
+import { ProductService } from './../product.service';
 
 // rxjs
-import { Subscription }                       from 'rxjs';
+import { Subscription } from 'rxjs';
 
 // interfaces
-import { HttpErrorResponse }                  from '@angular/common/http';
-import { Product }                            from './../product';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Product } from './../product';
 
 // form validators
-import { GenericValidator }                   from './../../shared/generic-validator';
-import { NumberValidators }                   from './../../shared/number.validator';
+import { GenericValidator } from './../../shared/generic-validator';
+import { NumberValidators } from './../../shared/number.validator';
 
 @Component({
   selector: 'pm-product-edit',

@@ -1,10 +1,10 @@
 // angular modules
-import { NgModule }       from '@angular/core';
-import { RouterModule }   from '@angular/router';
-import { Routes }         from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 
 // shared modules
-import { SharedModule }   from '../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 // components
 import { LoginComponent } from './login.component';
