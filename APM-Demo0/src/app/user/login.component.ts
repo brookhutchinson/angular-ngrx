@@ -1,10 +1,10 @@
 // angular
 import { Component, OnInit } from '@angular/core';
-import { NgForm }            from '@angular/forms';
-import { Router }            from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // services
-import { AuthService }       from './auth.service';
+import { AuthService } from './auth.service';
 
 @Component({
   templateUrl: './login.component.html',

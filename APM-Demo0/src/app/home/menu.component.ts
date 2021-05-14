@@ -1,9 +1,9 @@
 // angular
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
 // services
-import { AuthService }       from './../user/auth.service';
+import { AuthService } from './../user/auth.service';
 
 @Component({
   selector: 'pm-menu',
