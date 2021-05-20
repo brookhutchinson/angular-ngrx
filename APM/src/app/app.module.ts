@@ -38,8 +38,9 @@ import { StoreModule } from '@ngrx/store';
     // store
     StoreModule.forRoot({}, {})
   ],
-  // components
+  // declarations
   declarations: [
+    // components
     AppComponent,
     MenuComponent,
     PageNotFoundComponent,

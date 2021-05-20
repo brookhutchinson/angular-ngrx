@@ -192,31 +192,150 @@ Each feature state is added to the store state when a feature module is loaded
 
 
 _______________________________________________________________________________________________________________
+Initialize the store with its reducer
+
+Associate the store with the reducer that creates state for that store
+The reducers takes an action and uses the existing state to create new state
+The reducer updates the store with the new state
+Since AppModule is the Root Module we call the forRoot() method to initialize the store
+We pass in a reference to the reducer
+The store initialization associates a reducer with the store
+The store initialization registers the store with the application
+
+____________________________________________________________________________________________________________________
+app.module.ts
+
+// store
+import { StoreModule } from '@ngrx/store';
+
+imports: [
+  // angular modules
+  BrowserModule
+  RouterModule
+  // store
+  StoreModule.forRoot(reducer)
+]
+
+
+
+_______________________________________________________________________________________________________________
+We could have one reducer to manage the state inside our one store
+We do not want one big file that acts a reducer for the entire application
+
+Instead we will organize our state inside our store by feature
+Each feature module will have its own reducer
+Each feature state slice will correspond with a feature module
+We will define slices of state inside our store
+We will have one reducer for each feature slice of state
+
+"app": {
+
+},
+"products: {
+
+},
+"users": {
+
+}
+"customers": {
+
+}
+
+Each reducer is now smaller and more focused
+Each reducer is now easier to build
+Each reducer is now easier to maintain
+Each reducer is now easier to test
+
+_______________________________________________________________________________________________________________
+It is the combination of each feature slice state that makes up the application state at any give time
 
 
 
 
 
 _______________________________________________________________________________________________________________
+Initialize each Feature Module State using the feature module reducer
+
+StoreModule.forFeature('products', productReducer)
+
+'products' is the name of the feature slice
+productReducer is the name of the reducer for the feature
+productReducer is the name of the reducer that manages the 'products" feature slice of state
+
+
+_______________________________________________________________________________________________________________
+We could breakdown our feature slice even more by defining multiple feature reducers
+Example we could have feature slice named 'products' that has two sub-feature slices under it named 'productList" and 'productData'
+Each sub-feature slice represents a sub-feature slice of state
+We would define one recducer for each sub-feature slice of state
+Defining sub-feature slices of state helps us when each feature has lots of state to maintain
+This allows us to break each of our reducers into smaller code
+
+products: {
+  productList: {
+    showProductCode: true,
+    currentProduct: {...}
+  },
+  productData: {
+    products: [...],
+    productTypes: [...]
+  }
+}
+
+We would have 3 reducers
+rootReducer
+productListReducer
+productDataReducer
+
+To initialze the store using multiple reducers
+
+StoreModule.forFeature('products',
+  {
+    productList: listReducer,
+    productData: dataReducer
+  }
+)
+
+each object is represented by key/value pairs
+the key represents the sub slice of state
+the value is the name of the reducer
+
+
 
 
 
 _______________________________________________________________________________________________________________
+For our application we will only have one 'products' feature slice inside our store that represents our application state
+
+products: {
+  showProductCode: true,
+  currentProduct: {...}
+  products: [...]
+}
+
+For our application we will only have one reducer named productReducer
+
 
 
 
 
 
 _______________________________________________________________________________________________________________
-
-
-
-
-
+Initialize the store inside AppModule to assocaiate the store with our application
+We do not have a reducer for AppModule so we will pass an empty object as the reducer to the forRoot() method
+We pass in a second empty object to the forRoot() method since we do not have any configuration needed for the root reducer
 
 
 _______________________________________________________________________________________________________________
+Initialize the StoreModule in every feature module that defines a slice of state
 
+Open product.module.ts
+
+import { StoreModule } from '@ngrx/store';
+
+imports: [
+  StoreModule.forFeature('products', {})
+]
 
 
 
