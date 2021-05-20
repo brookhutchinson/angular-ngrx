@@ -121,84 +121,93 @@ SharedModule
   Validators
 
 _______________________________________________________________________________________________________________
-Course Outline
-
-Look at the Redux Pattern and understand the pieces of the Redux Pattern
-Add NgRx to an application
-How to use NgRx to manage state
-Understand the NgRx Developer Tools (Time Travel Debugging)
-
-_______________________________________________________________________________________________________________
-Strongly type the state
-Access state that is stored inside the NgRx store using selectors
-
-Strongly type each action with action creators
-
-_______________________________________________________________________________________________________________
-Sometimes our actions require async operations or other operations
-Example you may need to retrieve data from a backend server
-Example you may need to update data that is stored on a backend server
-Understand what are effects
-Understand how to work with effects
-
-_______________________________________________________________________________________________________________
-Most applications provide the ability to create, read, update, and delete data
-Understand how to provide create operations to create data using NgRx
-Understand how to provide read operations to read data using NgRx
-Understand how to provide update operations to update data using NgRx
-Understand how to provide delete operations to delete data using NgRx
-
-_______________________________________________________________________________________________________________
-Understand how to use the OnPush Change Detection Strategy to improve performance of our application
-
-_______________________________________________________________________________________________________________
-
-
-
-_______________________________________________________________________________________________________________
-The Redux Pattern
-
-The Redux Pattern is used by NgRx
-
-_______________________________________________________________________________________________________________
 First Look at NgRx
 
 Install NgRx
-Use NgRx to implement the Redux Pattern
+Use NgRx to implement a simple sceario
 
-_______________________________________________________________________________________________________________
-When the user checks the "Display Product Code" checkbox then
-The ProductListComponent View uses event binding to notify the ProductListComponent
+showProductCode flag
+
+When the user has checked the checkbox then the ProductListComponent HTML Template uses event binding to notify the
+component
 
 The ProductListComponent creates an action
-The ProductListComopnent dispatches an action to the reducer (telling the reducer to toggle the showProductCode property)
-
-The reducer uses the action along with the existing state that is stored inside the store to create new state
-The new state is created by the reducer with the showProductCode property set to true
+The ProductListComponent dispatches the aciton to the reducer
+Telling the reducer to toggle the showProductCode property
+The reducer uses that action along with the existing store state to create new state
+The new state contains the showProductCode property being set to true
 The reducer returns the new state to the store
-
+The ProductListComopnent is subscribing to the store
 The store broadcasts the new state to all components that are subscribed to the store
-The ProductListComponent is a subscriber of the store
-The store broadscasts the new state to the ProductListComponent
+ProductListComponent updates the value of the bound property showProductCode to true
+Angular Change Detection runs and automatically updates the ProductListComponent HTML Template
+Now the Product Code for each product inside the ProductListComponent HTML Template displays
 
-ProductListComponent updates the value of the showProductCode property with the value from the new state
-Change Detection is run inside ProductListComponent
-Change Detection updates the ProductListComponent HTML Template to show product codes next to each product name
 
 _______________________________________________________________________________________________________________
-Implement our first data flow using NgRx
-Setup the application
+Overview
+
+Setup application
 Install @ngrx/store
-Initialize the store for our application
-Define the state to track
-Define the actions that change that state
-Build a reducer to process those actions
-The reducer will set the store state
+Initialize the store
+Define the state that you want to keep track of
+Define the actions
+Create a reducer that will process actions and set store state
+Dispatch an action from a component to request a state change
+Subscribe to the store to get notified of state changes
 
-Inside ProductListCompoennt
-Dispatch an action to change state
-Subscribe to the store so that component receives state change notifications
 
+
+
+
+
+_______________________________________________________________________________________________________________
+Install npm package @ngrx/store
+
+Think of the store as a container
+Think of the store as an in-memory container for our application's state
+
+Think of the store as a javascript object that represents all of the properties of an application
+Think of the store as a javascript object that holds the properties for the application
+
+Application level properties make up the state inside a store
+Every component that needs to read the state goes to the store to get the state
+This ensures that all components show consitent results when displaying the state of an application
+
+If the user refreshes that browser, the state is not retained
+Meaning that the store is only available within a browser session
+
+If the user exists the application by closing their browser then the store is lost
+
+
+
+
+
+_______________________________________________________________________________________________________________
+Slices of state
+
+Each feature state is added to the store state when a feature module is loaded
+
+
+
+
+_______________________________________________________________________________________________________________
+
+
+
+
+
+_______________________________________________________________________________________________________________
+
+
+
+_______________________________________________________________________________________________________________
+
+
+
+
+
+_______________________________________________________________________________________________________________
 
 
 

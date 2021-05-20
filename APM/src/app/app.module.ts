@@ -20,17 +20,23 @@ import { WelcomeComponent } from './home/welcome.component';
 // feature modules
 import { UserModule } from './user/user.module';
 
+// store
+import { StoreModule } from '@ngrx/store';
+
 @NgModule({
   // modules
   imports: [
     // angular modules
-    BrowserModule, HttpClientModule,
+    BrowserModule,
+    HttpClientModule,
     // in-memory web api
     HttpClientInMemoryWebApiModule.forRoot(ProductData),
     // feature modules
     UserModule,
     // app routing module
-    AppRoutingModule
+    AppRoutingModule,
+    // store
+    StoreModule.forRoot({}, {})
   ],
   // components
   declarations: [
@@ -38,7 +44,7 @@ import { UserModule } from './user/user.module';
     MenuComponent,
     PageNotFoundComponent,
     ShellComponent,
-    WelcomeComponent,
+    WelcomeComponent
   ],
   // bootstrap
   bootstrap: [ AppComponent ]
