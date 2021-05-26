@@ -14,6 +14,9 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 // store
 import { StoreModule } from '@ngrx/store';
 
+// reducers
+import { productReducer } from './state/product.reducer';
+
 const productRoutes: Routes = [
   { path: '', component: ProductShellComponent }
 ];
@@ -26,7 +29,7 @@ const productRoutes: Routes = [
     // shared modules
     SharedModule,
     // store
-    StoreModule.forFeature('products', {})
+    StoreModule.forFeature('products', productReducer)
   ],
   // declarations
   declarations: [

@@ -341,3 +341,264 @@ imports: [
 
 
 _______________________________________________________________________________________________________________
+Create a reducer
+
+Reducer will process action
+Reducer will create new state
+
+
+productReducer represents the "products" slice of state
+
+ProductListComponent dispatches action named toggleProductCode
+
+productReducer listens for the action named toogleProductCode
+at that moment the existing state is passed into the on() method
+the handler function is executed
+the handler function processes the existing state
+the handler function returns the new state
+
+
+
+productReducer takes in existing state from store
+productReducer processes the toggleProductCode action
+productReducer replaces existing state with new state in store
+
+
+
+
+_______________________________________________________________________________________________________________
+product.reducer.ts
+
+export const productReducer = createReducer(
+  initialState,
+  on(ProductActions.toggleProductCode, state => {
+    return {
+      ...state,
+      showProductCode: !state.showProductCode
+    };
+  })
+);
+
+
+
+
+_______________________________________________________________________________________________________________
+spread operator
+
+Used to copy an object to a new object
+Copies the properties from one object to a second object
+
+
+
+
+
+
+_______________________________________________________________________________________________________________
+Create a folder that contains the state related to our Product Feature
+This folder will contain the actions and reducers for the Products feature
+
+_______________________________________________________________________________________________________________
+src/app/products/state/product.reducer.ts
+
+import { createAction } from '@ngrx/store';
+import { createReducer } from '@ngrx/store';
+import { on } from '@ngrx/store';
+
+export const productReducer = createReducer(
+  { showProductCode: true },
+  on(createAction('[Product] Toggle Product Code'),
+    state => {
+      // write out existing state
+      console.log('original state: ' + JSON.stringify(state));
+
+      // return new state
+      return {
+        ...state,
+        showProductCode: !state.showProductCode
+      };
+  })
+);
+
+_______________________________________________________________________________________________________________
+
+Import productRecuder into ProductModule
+Initialize productReducer using StoreModule.forFeature() method
+
+// store
+StoreModule.forFeature('products', productReducer)
+
+
+
+
+
+
+_______________________________________________________________________________________________________________
+Nothing happens until you dispatch an action
+
+Store has been initialized
+State is defined
+Action is defined
+Reducer is defined
+
+
+_______________________________________________________________________________________________________________
+Dispatch an action to change state
+
+We dispatch actions based on user events
+
+Before we dispatch an action from a component we need to inject the "store" service into the component
+
+_______________________________________________________________________________________________________________
+ProductListComponent
+
+import { Store } from '@ngrx/store';
+
+constructor(private store: Store<any>) {}
+
+_______________________________________________________________________________________________________________
+When a user checks the "Display product code" checkbox then the ProductListComponent dispatches an action
+Each time that a user checks the checkbox then dispatch the action
+
+The ProductListComponent dispatches an action by calling the store.dispatch() method
+
+_______________________________________________________________________________________________________________
+product-list.component.ts
+
+The checkboxChanged() method toggles a local property named displayProductCode
+
+displayCode: boolean;
+
+checkboxChanged() {
+  this.displayCode = !this.displayCode;
+}
+
+_______________________________________________________________________________________________________________
+product-list.component.html
+
+When the user checks the checkbox, use event binding to call the checkboxChanged() method
+
+<label>
+  <input class="form-check-input" type="checkbox" (change)="checkboxChanged()" [checked]="displayCode">
+  Display Product Code
+</label>
+
+the local "displayProductCode" property is used to show or hide the product code inside the product list
+This works well until the user navigates away from the ProductListComponent HTML Template
+
+Since the "displayProductCode" property is local to the ProductListComponent the value of "displayProductCode" property is lost when
+a user navigates away from the ProductListComponent
+
+Meaning that when a user navigates back to the ProductListComponent the application does not remember the previous value of the
+"displayProductCode" property value
+
+_______________________________________________________________________________________________________________
+A different approach would be to have the ProductListComponent displatch an action to the store and retain the property value inside
+the store
+
+
+_______________________________________________________________________________________________________________
+Commit commnets
+Import Store from '@ngrx/store;
+Inject Store Service into constructor() method
+Define the Store as <any>
+Dispatch action from checkboxChanged() method
+The action will use the string name that defines the aciton inside product.reducer.ts
+The reducer sets the initial state "showProductCode" property to true
+When the checkbox is checked then the reducer will set the state "showProductCode" property to false
+
+_______________________________________________________________________________________________________________
+product-list.component.ts
+
+import { Store } from '@ngrx/store';
+
+
+constructor(store: Store<any>) {}
+
+checkboxChanged() {
+  this.store.dispatch({
+    type: '[Product] Toogle Product Code'
+  });
+}
+
+_______________________________________________________________________________________________________________
+Subscribe to the store to get the state "showProductCode" property value from the store
+
+To access a value in the store we select the 'products' slice of state
+this.store.select('products')
+
+The select() method returns a slice of state as an observable
+
+
+_______________________________________________________________________________________________________________
+The store is an observable
+Meaning that the ProductListComponent can subsribe to the store observable
+
+Meaning that if the ProductListComponent wants to be notified of changes to the 'products' slice state
+then the ProductListComponent can subscribe to the observable
+
+this.store.select('products').subscribe(
+  (products) => {
+    // set property to value from state
+    this.displayCode = products.productCode
+  }
+);
+
+_______________________________________________________________________________________________________________
+Note that any changes to any part of the 'products' slice will generate a notification to the ProductListComponent
+Meaning that the ProductListComponent will be notified when any change is made to any part of the 'products' slice
+
+The entire 'product' slice is provided in the notification
+
+
+Each time that an action triggers the reducer to replace the product slice state then the component is notified
+and then the code inside the arrow function is executed
+
+The arrow function is the next() function that is executed each time that that the subscribe() recieves
+the next notification from the store
+
+_______________________________________________________________________________________________________________
+Complete our NgRx data flow and then subscribe to state changes
+
+We want the ProductListComponent to be notified any time the the product state changes
+
+Note that the "products" property might not be defined yet
+Meaning that the async operation may not have populated the "products" property yet
+So inside our next() method we check if "products" property exists
+When the "products" property exists this means that the state has populated the "products" property
+
+The Component HTML Template binds to the local property named "displayCode"
+The Component HTML Template uses the *ngIf directive to show or hide the product code of each product in the list of products
+
+
+
+
+
+
+
+_______________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+_______________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
