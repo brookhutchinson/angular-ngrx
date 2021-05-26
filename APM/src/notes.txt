@@ -520,3 +520,85 @@ checkboxChanged() {
   });
 }
 
+_______________________________________________________________________________________________________________
+Subscribe to the store to get the state "showProductCode" property value from the store
+
+To access a value in the store we select the 'products' slice of state
+this.store.select('products')
+
+The select() method returns a slice of state as an observable
+
+
+_______________________________________________________________________________________________________________
+The store is an observable
+Meaning that the ProductListComponent can subsribe to the store observable
+
+Meaning that if the ProductListComponent wants to be notified of changes to the 'products' slice state
+then the ProductListComponent can subscribe to the observable
+
+this.store.select('products').subscribe(
+  (products) => {
+    // set property to value from state
+    this.displayCode = products.productCode
+  }
+);
+
+_______________________________________________________________________________________________________________
+Note that any changes to any part of the 'products' slice will generate a notification to the ProductListComponent
+Meaning that the ProductListComponent will be notified when any change is made to any part of the 'products' slice
+
+The entire 'product' slice is provided in the notification
+
+
+Each time that an action triggers the reducer to replace the product slice state then the component is notified
+and then the code inside the arrow function is executed
+
+The arrow function is the next() function that is executed each time that that the subscribe() recieves
+the next notification from the store
+
+_______________________________________________________________________________________________________________
+Complete our NgRx data flow and then subscribe to state changes
+
+We want the ProductListComponent to be notified any time the the product state changes
+
+Note that the "products" property might not be defined yet
+Meaning that the async operation may not have populated the "products" property yet
+So inside our next() method we check if "products" property exists
+When the "products" property exists this means that the state has populated the "products" property
+
+The Component HTML Template binds to the local property named "displayCode"
+The Component HTML Template uses the *ngIf directive to show or hide the product code of each product in the list of products
+
+
+
+
+
+
+
+_______________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+_______________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
